@@ -1,0 +1,43 @@
+﻿
+<div class="height-15 w-100 shadow-lg px-4 bg-light border-bottom">
+    <div class="d-flex align-items-center container-fluid">
+        <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-15">
+            <div class="page-logo-link d-flex align-items-center">
+                <img src="~/Assets/img/logoFSP_small.png" style="width:100px" alt="logo" aria-roledescription="logo">
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(User.Identity.Name))
+        {
+            <div class="ml-auto d-flex">
+                <a href="#" data-toggle="dropdown" title="@User.Identity.Name" class="header-icon d-flex align-items-center justify-content-center ml-5">
+                    <img src="~/Assets/img/demo/avatars/manager.png" class="profile-image rounded-circle border border-info p-1" alt="@User.Identity.Name">
+                    <!-- you can also add username next to the avatar with the codes below:
+                    <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+                    <i class="ni ni-chevron-down hidden-xs-down"></i> -->
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                    <div class="dropdown-header bg-trans-gradient d-flex flex-row py-3 px-2 rounded-top">
+                        <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                            <span class="mr-2">
+                                <img src="~/Assets/img/demo/avatars/manager.png" class="rounded-circle profile-image bg-info-50" alt="@User.Identity.Name">
+                            </span>
+                            <div class="info-card-text">
+                                <div class="fs-lg text-truncate text-truncate-lg">@User.Identity.Name</div>
+                                @*<span class="text-truncate text-truncate-lg opacity-80">@User..Identity.</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    @*<a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
+                            <span data-i18n="drpdwn.settings">Settings</span>
+                        </a>*@
+                    <div class="dropdown-divider m-0"></div>
+                    <a class="dropdown-item fw-500 pt-3 pb-3" href="~/Account/LogOff">
+                        <span data-i18n="drpdwn.page-logout">Logout</span>
+                    </a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+@*@Html.Partial("~/Views/Modal/_ChangePasswordModal.cshtml")*@

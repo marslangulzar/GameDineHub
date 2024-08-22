@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="FireStreetPizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="GameDineHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="AppSetting">
     <Key>
       <PropertyRef Name="ID" />
@@ -50,7 +50,7 @@
     <NavigationProperty Name="VotingRound" Relationship="Self.fk_Team_VotingRound" FromRole="Team" ToRole="VotingRound" />
     <NavigationProperty Name="VotingResults" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="Team" ToRole="VotingResult" />
     <NavigationProperty Name="VotingResults1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="Team" ToRole="VotingResult" />
-    <NavigationProperty Name="TeamSongs" Relationship="FireStreetPizzaModel.fk_TeamSong_Team" FromRole="Team" ToRole="TeamSong" />
+    <NavigationProperty Name="TeamSongs" Relationship="GameDineHubModel.fk_TeamSong_Team" FromRole="Team" ToRole="TeamSong" />
   </EntityType>
   <EntityType Name="UserInfo">
     <Key>
@@ -83,7 +83,7 @@
     <NavigationProperty Name="Lst_State" Relationship="Self.FK_UserInfo_Lst_State" FromRole="UserInfo" ToRole="Lst_State" />
     <NavigationProperty Name="UserLoginHistories" Relationship="Self.FK_UserLoginHistory_To_Users_fk_UserID" FromRole="UserInfo" ToRole="UserLoginHistory" />
     <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserToRole_UserInfo" FromRole="UserInfo" ToRole="UserRole" />
-    <NavigationProperty Name="SiteProprities" Relationship="FireStreetPizzaModel.Fk_SiteProprity_UserInfo" FromRole="UserInfo" ToRole="SiteProprity" />
+    <NavigationProperty Name="SiteProprities" Relationship="GameDineHubModel.Fk_SiteProprity_UserInfo" FromRole="UserInfo" ToRole="SiteProprity" />
   </EntityType>
   <EntityType Name="UserLoginHistory">
     <Key>
@@ -118,7 +118,7 @@
     <NavigationProperty Name="Team" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="VotingResult" ToRole="Team" />
     <NavigationProperty Name="Team1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="VotingResult" ToRole="Team" />
     <Property Name="fk_TeamSongID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TeamSong" Relationship="FireStreetPizzaModel.Fk_VotingResult_VotingSong" FromRole="VotingResult" ToRole="TeamSong" />
+    <NavigationProperty Name="TeamSong" Relationship="GameDineHubModel.Fk_VotingResult_VotingSong" FromRole="VotingResult" ToRole="TeamSong" />
   </EntityType>
   <EntityType Name="VotingRound">
     <Key>
@@ -227,7 +227,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="FireStreetPizzaEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GameDineHubEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
     <EntitySet Name="Lst_Gender" EntityType="Self.Lst_Gender" />
     <EntitySet Name="Lst_State" EntityType="Self.Lst_State" />
@@ -270,17 +270,17 @@
       <End Role="UserInfo" EntitySet="UserInfoes" />
       <End Role="UserRole" EntitySet="UserRoles" />
     </AssociationSet>
-    <EntitySet Name="TeamSongs" EntityType="FireStreetPizzaModel.TeamSong" />
-    <AssociationSet Name="fk_TeamSong_Team" Association="FireStreetPizzaModel.fk_TeamSong_Team">
+    <EntitySet Name="TeamSongs" EntityType="GameDineHubModel.TeamSong" />
+    <AssociationSet Name="fk_TeamSong_Team" Association="GameDineHubModel.fk_TeamSong_Team">
       <End Role="Team" EntitySet="Teams" />
       <End Role="TeamSong" EntitySet="TeamSongs" />
     </AssociationSet>
-    <AssociationSet Name="Fk_VotingResult_VotingSong" Association="FireStreetPizzaModel.Fk_VotingResult_VotingSong">
+    <AssociationSet Name="Fk_VotingResult_VotingSong" Association="GameDineHubModel.Fk_VotingResult_VotingSong">
       <End Role="TeamSong" EntitySet="TeamSongs" />
       <End Role="VotingResult" EntitySet="VotingResults" />
     </AssociationSet>
-    <EntitySet Name="SiteProprities" EntityType="FireStreetPizzaModel.SiteProprity" />
-    <AssociationSet Name="Fk_SiteProprity_UserInfo" Association="FireStreetPizzaModel.Fk_SiteProprity_UserInfo">
+    <EntitySet Name="SiteProprities" EntityType="GameDineHubModel.SiteProprity" />
+    <AssociationSet Name="Fk_SiteProprity_UserInfo" Association="GameDineHubModel.Fk_SiteProprity_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfoes" />
       <End Role="SiteProprity" EntitySet="SiteProprities" />
     </AssociationSet>
@@ -296,12 +296,12 @@
     <Property Name="VotingDone" Type="Boolean" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="SpotifySongUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Team" Relationship="FireStreetPizzaModel.fk_TeamSong_Team" FromRole="TeamSong" ToRole="Team" />
-    <NavigationProperty Name="VotingResults" Relationship="FireStreetPizzaModel.Fk_VotingResult_VotingSong" FromRole="TeamSong" ToRole="VotingResult" />
+    <NavigationProperty Name="Team" Relationship="GameDineHubModel.fk_TeamSong_Team" FromRole="TeamSong" ToRole="Team" />
+    <NavigationProperty Name="VotingResults" Relationship="GameDineHubModel.Fk_VotingResult_VotingSong" FromRole="TeamSong" ToRole="VotingResult" />
   </EntityType>
   <Association Name="fk_TeamSong_Team">
-    <End Type="FireStreetPizzaModel.Team" Role="Team" Multiplicity="1" />
-    <End Type="FireStreetPizzaModel.TeamSong" Role="TeamSong" Multiplicity="*" />
+    <End Type="GameDineHubModel.Team" Role="Team" Multiplicity="1" />
+    <End Type="GameDineHubModel.TeamSong" Role="TeamSong" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Team">
         <PropertyRef Name="ID" />
@@ -312,8 +312,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Fk_VotingResult_VotingSong">
-    <End Type="FireStreetPizzaModel.TeamSong" Role="TeamSong" Multiplicity="1" />
-    <End Type="FireStreetPizzaModel.VotingResult" Role="VotingResult" Multiplicity="*" />
+    <End Type="GameDineHubModel.TeamSong" Role="TeamSong" Multiplicity="1" />
+    <End Type="GameDineHubModel.VotingResult" Role="VotingResult" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TeamSong">
         <PropertyRef Name="ID" />
@@ -331,11 +331,11 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CreatedBy" Type="Int32" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="UserInfo" Relationship="FireStreetPizzaModel.Fk_SiteProprity_UserInfo" FromRole="SiteProprity" ToRole="UserInfo" />
+    <NavigationProperty Name="UserInfo" Relationship="GameDineHubModel.Fk_SiteProprity_UserInfo" FromRole="SiteProprity" ToRole="UserInfo" />
   </EntityType>
   <Association Name="Fk_SiteProprity_UserInfo">
-    <End Type="FireStreetPizzaModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-    <End Type="FireStreetPizzaModel.SiteProprity" Role="SiteProprity" Multiplicity="*" />
+    <End Type="GameDineHubModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="GameDineHubModel.SiteProprity" Role="SiteProprity" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserInfo">
         <PropertyRef Name="ID" />

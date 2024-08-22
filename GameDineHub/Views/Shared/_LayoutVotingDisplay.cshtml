@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="root-text-xl">
+<head>
+    @{
+        int applicationversion = 10016;
+    }
+    <meta charset="utf-8">
+    <title>
+        Game Dine Hub
+    </title>
+    <meta name="description" content="Bingo">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+    <!-- Call App Mode on ios devices -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- base css -->
+    @Styles.Render("~/Assets/css/vendors.bundle.css")
+    @Styles.Render("~/Assets/css/app.bundle.css")
+
+    @RenderSection("Styles", false)
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Assets/img/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Assets/img/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="~/Assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-solid.css">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-brands.css">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-regular.css">
+    <link id="mytheme" rel="stylesheet" href="/Assets/css/themes/cust-theme-3.css">
+    <link href="~/Assets/css/notifications/sweetalert2/sweetalert2.bundle.css" rel="stylesheet" />
+    <link href="~/Assets/css/formplugins/bootstrap-duallistbox/bootstrap-duallistbox.css" rel="stylesheet" />
+    <link href="~/Assets/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" media="screen, print" />
+    <link href="~/Assets/css/WinningBg.css" rel="stylesheet" />
+    <link href="~/Assets/css/formplugins/select2/select2.bundle.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen, print" href="~/Assets/css/notifications/toastr/toastr.css">
+    <link href="~/Assets/css/custom.css?v=@applicationversion" rel="stylesheet" />
+    <script src="~/Assets/js/vendors.bundle.js"></script>
+    <script src="~/Assets/js/winningBg.js"></script>
+    <style>
+
+        @@import url('https://fonts.cdnfonts.com/css/molisa-delawere');
+
+        .page-wrapper {
+            overflow: hidden
+        }
+
+        .login-bg-img::after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: "";
+            /* background: linear-gradient(0deg, rgb(211 81 5 / 76%) 25%, rgb(248 148 18 / 69%) 83%);*/
+            width: 100%;
+            height: 100%;
+        }
+
+        .img-text-login {
+            position: relative;
+            z-index: 100;
+        }
+
+        .VoteButtonStyle {
+            background: rgb(236,181,76);
+            background: linear-gradient(180deg, rgba(236,181,76,0.8379726890756303) 1%, rgba(225,152,39,1) 56%, rgba(236,176,61,0.8995973389355743) 100%);
+            border: 2px solid white !important;
+        }
+
+       html,
+body {
+	min-height: 100vh;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Helvetica", "Arial", sans-serif;
+	font-weight: bold;
+	background: #060b21;
+	box-sizing: border-box;
+}
+
+* {
+	box-sizing: inherit;
+}
+
+body.frame {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	position: relative;
+	color: white;
+	margin: 2em;
+	padding-top: 2em;
+	border-radius: 2em;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.75), 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.frame:before {
+	content: "";
+	display: block;
+	width: 4em;
+	height: 0.6em;
+	background: white;
+	margin: 0 auto;
+	z-index: 10;
+	border-radius: 10em;
+	mix-blend-mode: overlay;
+}
+
+body.frame .frame-header {
+	position: relative;
+	z-index: 10;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	padding: 2rem;
+}
+
+body.frame .frame-header .image {
+	margin-right: 1.5em;
+}
+
+body.frame .frame-header .image img {
+	width: 50px;
+	border-radius: 0.5em;
+	box-shadow: 0 3px 30px rgba(0, 0, 0, 0.2), 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.frame .frame-header .info .title {
+	font-size: 1.8rem;
+}
+
+body.frame .frame-header .info .subtitle {
+	font-size: 1.2rem;
+	margin-top: 0.25em;
+}
+
+body.frame .frame-lyrics {
+	position: relative;
+	z-index: 10;
+	flex-grow: 1;
+	padding: 2rem;
+	padding-top: 0;
+	font-size: 2rem;
+	overflow-y: auto;
+}
+
+body.frame .frame-lyrics > div {
+	color: rgba(255, 255, 255, 0.75);
+}
+
+body.frame .frame-lyrics > div + div {
+	margin-top: 1.4em;
+}
+
+body.frame .frame-lyrics > div.active {
+	color: white;
+	font-size: 3rem;
+	margin-top: 0.8em;
+}
+
+body.frame .frame-lyrics > div:not(.active) {
+	filter: blur(0.05px);
+}
+
+body.frame .frame-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 0;
+	border-radius: 2em;
+}
+
+body.frame .frame-bg .bg-color,
+body.frame .frame-bg .bg-black {
+	width: 200%;
+	position: absolute;
+	border-radius: 100em;
+	animation: rotate 35s linear infinite;
+}
+
+body.frame .frame-bg .bg-color {
+	right: 0;
+	top: 0;
+	filter: blur(40px);
+	z-index: 10;
+	mix-blend-mode: luminosity;
+}
+
+body.frame .frame-bg .bg-black {
+	left: 0;
+	bottom: 0;
+	filter: blur(40px);
+	z-index: 1;
+	animation-direction: reverse;
+	animation-delay: 10s;
+}
+
+@@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+    </style>
+    <script>
+
+        if (!!document.documentMode) {
+            alert("It's highly recomended to use Chrome browser for this application. Thanks");
+        }
+    </script>
+</head>
+<body class="desktop chrome webkit pace-done blur background frame">
+
+    <!-- DOC: script to save and load page settings -->
+    <!-- BEGIN Page Wrapper -->
+    <div class="page-wrapper">
+
+        <div class="page-inner">
+            <div class="page-content-wrapper m-0 login-bg-img" style="background: url('../../Assets/img/backgrounds/') no-repeat center fixed;">
+
+                <!-- BEGIN Page Content -->
+                <!-- the #js-page-content id is needed for some plugins to initialize -->
+                <div class="flex-1 img-text-login">
+                    @RenderBody()
+                    @* @{Html.RenderPartial("_BreadCrumb");}*@
+                    @*<div id="container pb-4 my-lg-5 px-4 px-sm-0">
+
+                        </div>*@
+                </div>
+                <!-- this overlay is activated only when mobile menu is triggered -->
+                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                <!-- BEGIN Page Footer -->
+                @{Html.RenderPartial("_PageNoNavFooter");}
+                <!-- END Page Footer -->
+                <!-- BEGIN Shortcuts -->
+            </div>
+        </div>
+    </div>
+
+    <div class="frame-bg">
+        <img class="bg-color album-artwork" src="https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/1c/77/af/1c77af17-4ca7-1871-9d53-3683eab952c0/source/600x600bb.jpg" />
+        <img class="bg-black album-artwork" src="https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/1c/77/af/1c77af17-4ca7-1871-9d53-3683eab952c0/source/600x600bb.jpg" />
+    </div>
+
+    <!-- END Page Wrapper -->
+    @RenderSection("Scripts", false)
+    <!-- base vendor bundle:
+      DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
+                 + pace.js(recommended)
+                 + jquery.js(core)
+                 + jquery-ui-cust.js(core)
+                 + popper.js(core)
+                 + bootstrap.js(core)
+                 + slimscroll.js(extension)
+                 + app.navigation.js(core)
+                 + ba-throttle-debounce.js(core)
+                 + waves.js(extension)
+                 + smartpanels.js(extension)
+                 + src/../jquery-snippets.js(core) -->
+
+    <script src="~/Assets/js/app.bundle.js"></script>
+    <script src="~/Assets/js/formplugins/bootstrap-duallistbox/jquery.bootstrap-duallistbox.js"></script>
+    <script src="~/Assets/js/common.js?v=@applicationversion"></script>
+    <script src="~/Assets/js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
+    <script src="~/Assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/Assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="~/Assets/js/notifications/toastr/toastr.js"></script>
+    <script src="~/Assets/js/formplugins/select2/select2.bundle.js"></script>
+    <!--begin::Signal R -->
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="~/Scripts/hub-call.js"></script>
+    <!--end:: Signal R -->
+
+
+    @RenderSection("Scripts", false)
+    <!-- Start Overlay -->
+    <div class="row d-none" id="overlay">
+        <div class="overlaytextholder">
+            <div class="d-block " id="overlaybgimg" role="status" aria-hidden="true">
+                <img src="~/Assets/img/favicon/favicon-16x16.png" class="profile-image spinner-grow bg-warning-50 profile-image rounded-circle">
+            </div>
+            <div class="overlaytext">
+                <strong class="text-white">Loading Please Wait...</strong>
+            </div>
+        </div>
+    </div>
+    <!-- END Overlay -->
+
+</body>
+</html>
+

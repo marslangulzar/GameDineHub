@@ -12,13 +12,13 @@ namespace DataModel.UnitOfWork
         #region Constructor
         public UnitOfWork()
         {
-            _context = new FireStreetPizzaEntities();
+            _context = new GameDineHubEntities();
         }
         #endregion
 
         #region Private member variables...
 
-        private FireStreetPizzaEntities _context = null;
+        private   GameDineHubEntities _context = null;
         private GenericRepository<UserInfo> _userRepository;
         private GenericRepository<UserRole> _userToRoleRepository;
         private GenericRepository<Role> _roleRepository;

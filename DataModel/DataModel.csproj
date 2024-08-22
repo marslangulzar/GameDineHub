@@ -60,55 +60,55 @@
   <ItemGroup>
     <Compile Include="GenericRepository\GenericRepository.cs" />
     <Compile Include="Model\AppSetting.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FireStreetPizzaModel.Context.cs">
+    <Compile Include="Model\GameDineHubModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FireStreetPizzaModel.Context.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FireStreetPizzaModel.cs">
+    <Compile Include="Model\GameDineHubModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FireStreetPizzaModel.Designer.cs">
+    <Compile Include="Model\GameDineHubModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FireStreetPizzaModel.edmx</DependentUpon>
+      <DependentUpon>GameDineHubModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Lst_Gender.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Lst_State.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Role.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SiteProprity.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Team.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TeamSong.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserInfo.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserLoginHistory.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserRole.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\VotingResult.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\VotingRound.cs">
-      <DependentUpon>FireStreetPizzaModel.tt</DependentUpon>
+      <DependentUpon>GameDineHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
@@ -117,12 +117,12 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Model\FireStreetPizzaModel.edmx">
+    <EntityDeploy Include="Model\GameDineHubModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FireStreetPizzaModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>GameDineHubModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\FireStreetPizzaModel.edmx.diagram">
-      <DependentUpon>FireStreetPizzaModel.edmx</DependentUpon>
+    <None Include="Model\GameDineHubModel.edmx.diagram">
+      <DependentUpon>GameDineHubModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -130,16 +130,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\FireStreetPizzaModel.Context.tt">
+    <Content Include="Model\GameDineHubModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FireStreetPizzaModel.edmx</DependentUpon>
-      <LastGenOutput>FireStreetPizzaModel.Context.cs</LastGenOutput>
+      <DependentUpon>GameDineHubModel.edmx</DependentUpon>
+      <LastGenOutput>GameDineHubModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\FireStreetPizzaModel.edmx.sql" />
-    <Content Include="Model\FireStreetPizzaModel.tt">
+    <Content Include="Model\GameDineHubModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FireStreetPizzaModel.edmx</DependentUpon>
-      <LastGenOutput>FireStreetPizzaModel.cs</LastGenOutput>
+      <DependentUpon>GameDineHubModel.edmx</DependentUpon>
+      <LastGenOutput>GameDineHubModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GameDineHubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="3500" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Lst_Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lst_State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Abbreviation" Type="nchar" MaxLength="2" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiteProprities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="fk_VotingRoundID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamSongs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_TeamID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SongURL" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="VotingDone" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="SpotifySongUrl" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UserInfoes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_GenderID" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="80" />
+          <Property Name="LastName" Type="varchar" MaxLength="80" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PasswordRequestHash" Type="nvarchar" MaxLength="500" />
+          <Property Name="PasswordRequestDate" Type="datetime" />
+          <Property Name="LoginAttempts" Type="int" Nullable="false" />
+          <Property Name="LastPasswordChange" Type="datetime" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneExt" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="IsNewsLetter" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserLoginHistories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_UserId" Type="int" Nullable="false" />
+          <Property Name="LoginDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LogoutDateTime" Type="datetime" />
+          <Property Name="UserIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrowserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_UserID" Type="int" Nullable="false" />
+          <Property Name="fk_RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VotingResults">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_VotingByTeamID" Type="int" Nullable="false" />
+          <Property Name="fk_VotingToTeamID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="fk_TeamSongID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VotingRounds">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="VoatingStart" Type="bit" />
+          <Property Name="VoatingDone" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="Fk_SiteProprity_UserInfo">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="1" />
+          <End Role="SiteProprities" Type="Self.SiteProprities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfoes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteProprities">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Team_VotingRound">
+          <End Role="VotingRounds" Type="Self.VotingRounds" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VotingRounds">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="fk_VotingRoundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TeamSong_Team">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="TeamSongs" Type="Self.TeamSongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamSongs">
+              <PropertyRef Name="fk_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_Lst_Gender">
+          <End Role="Lst_Gender" Type="Self.Lst_Gender" Multiplicity="0..1" />
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lst_Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserInfoes">
+              <PropertyRef Name="fk_GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_Lst_State">
+          <End Role="Lst_State" Type="Self.Lst_State" Multiplicity="0..1" />
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lst_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserInfoes">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLoginHistory_To_Users_fk_UserID">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="1" />
+          <End Role="UserLoginHistories" Type="Self.UserLoginHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfoes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserLoginHistories">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRole_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="fk_RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRole_UserInfo">
+          <End Role="UserInfoes" Type="Self.UserInfoes" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfoes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="fk_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VotiingResult_TeamBy">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="VotingResults" Type="Self.VotingResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResults">
+              <PropertyRef Name="fk_VotingByTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VotiingResult_TeamTo">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="VotingResults" Type="Self.VotingResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResults">
+              <PropertyRef Name="fk_VotingToTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_VotingResult_VotingSong">
+          <End Role="TeamSongs" Type="Self.TeamSongs" Multiplicity="1" />
+          <End Role="VotingResults" Type="Self.VotingResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamSongs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResults">
+              <PropertyRef Name="fk_TeamSongID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDineHubModelStoreContainer">
+          <EntitySet Name="AppSettings" EntityType="Self.AppSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lst_Gender" EntityType="Self.Lst_Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lst_State" EntityType="Self.Lst_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteProprities" EntityType="Self.SiteProprities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamSongs" EntityType="Self.TeamSongs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLoginHistories" EntityType="Self.UserLoginHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VotingResults" EntityType="Self.VotingResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VotingRounds" EntityType="Self.VotingRounds" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Fk_SiteProprity_UserInfo" Association="Self.Fk_SiteProprity_UserInfo">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="SiteProprities" EntitySet="SiteProprities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Team_VotingRound" Association="Self.fk_Team_VotingRound">
+            <End Role="VotingRounds" EntitySet="VotingRounds" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TeamSong_Team" Association="Self.fk_TeamSong_Team">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamSongs" EntitySet="TeamSongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_Lst_Gender" Association="Self.FK_UserInfo_Lst_Gender">
+            <End Role="Lst_Gender" EntitySet="Lst_Gender" />
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_Lst_State" Association="Self.FK_UserInfo_Lst_State">
+            <End Role="Lst_State" EntitySet="Lst_State" />
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLoginHistory_To_Users_fk_UserID" Association="Self.FK_UserLoginHistory_To_Users_fk_UserID">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="UserLoginHistories" EntitySet="UserLoginHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRole_Roles" Association="Self.FK_UserToRole_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRole_UserInfo" Association="Self.FK_UserToRole_UserInfo">
+            <End Role="UserInfoes" EntitySet="UserInfoes" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VotiingResult_TeamBy" Association="Self.fk_VotiingResult_TeamBy">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="VotingResults" EntitySet="VotingResults" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VotiingResult_TeamTo" Association="Self.fk_VotiingResult_TeamTo">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="VotingResults" EntitySet="VotingResults" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_VotingResult_VotingSong" Association="Self.Fk_VotingResult_VotingSong">
+            <End Role="TeamSongs" EntitySet="TeamSongs" />
+            <End Role="VotingResults" EntitySet="VotingResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GameDineHubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="3500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Label" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Lst_Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_Lst_Gender" FromRole="Lst_Gender" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Lst_State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_Lst_State" FromRole="Lst_State" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserToRole_Roles" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fk_VotingRoundID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VotingRound" Relationship="Self.fk_Team_VotingRound" FromRole="Team" ToRole="VotingRound" />
+          <NavigationProperty Name="VotingResults" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="Team" ToRole="VotingResult" />
+          <NavigationProperty Name="VotingResults1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="Team" ToRole="VotingResult" />
+          <NavigationProperty Name="TeamSongs" Relationship="GameDineHubModel.fk_TeamSong_Team" FromRole="Team" ToRole="TeamSong" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_GenderID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordRequestHash" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordRequestDate" Type="DateTime" Precision="3" />
+          <Property Name="LoginAttempts" Type="Int32" Nullable="false" />
+          <Property Name="LastPasswordChange" Type="DateTime" Precision="3" />
+          <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneExt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StateID" Type="Int32" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="IsNewsLetter" Type="Boolean" />
+          <NavigationProperty Name="Lst_Gender" Relationship="Self.FK_UserInfo_Lst_Gender" FromRole="UserInfo" ToRole="Lst_Gender" />
+          <NavigationProperty Name="Lst_State" Relationship="Self.FK_UserInfo_Lst_State" FromRole="UserInfo" ToRole="Lst_State" />
+          <NavigationProperty Name="UserLoginHistories" Relationship="Self.FK_UserLoginHistory_To_Users_fk_UserID" FromRole="UserInfo" ToRole="UserLoginHistory" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserToRole_UserInfo" FromRole="UserInfo" ToRole="UserRole" />
+          <NavigationProperty Name="SiteProprities" Relationship="GameDineHubModel.Fk_SiteProprity_UserInfo" FromRole="UserInfo" ToRole="SiteProprity" />
+        </EntityType>
+        <EntityType Name="UserLoginHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_UserId" Type="Int32" Nullable="false" />
+          <Property Name="LoginDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LogoutDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrowserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserLoginHistory_To_Users_fk_UserID" FromRole="UserLoginHistory" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_UserID" Type="Int32" Nullable="false" />
+          <Property Name="fk_RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserToRole_Roles" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserToRole_UserInfo" FromRole="UserRole" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="VotingResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_VotingByTeamID" Type="Int32" Nullable="false" />
+          <Property Name="fk_VotingToTeamID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Team" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="VotingResult" ToRole="Team" />
+          <NavigationProperty Name="Team1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="VotingResult" ToRole="Team" />
+          <Property Name="fk_TeamSongID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TeamSong" Relationship="GameDineHubModel.Fk_VotingResult_VotingSong" FromRole="VotingResult" ToRole="TeamSong" />
+        </EntityType>
+        <EntityType Name="VotingRound">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="VoatingStart" Type="Boolean" />
+          <Property Name="VoatingDone" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Teams" Relationship="Self.fk_Team_VotingRound" FromRole="VotingRound" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_UserInfo_Lst_Gender">
+          <End Role="Lst_Gender" Type="Self.Lst_Gender" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lst_Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="fk_GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_Lst_State">
+          <End Role="Lst_State" Type="Self.Lst_State" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lst_State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRole_Roles">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="fk_RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Team_VotingRound">
+          <End Role="VotingRound" Type="Self.VotingRound" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VotingRound">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="fk_VotingRoundID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VotiingResult_TeamBy">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="VotingResult" Type="Self.VotingResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResult">
+              <PropertyRef Name="fk_VotingByTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_VotiingResult_TeamTo">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="VotingResult" Type="Self.VotingResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResult">
+              <PropertyRef Name="fk_VotingToTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLoginHistory_To_Users_fk_UserID">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserLoginHistory" Type="Self.UserLoginHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserLoginHistory">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserToRole_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="fk_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDineHubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
+          <EntitySet Name="Lst_Gender" EntityType="Self.Lst_Gender" />
+          <EntitySet Name="Lst_State" EntityType="Self.Lst_State" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+          <EntitySet Name="UserLoginHistories" EntityType="Self.UserLoginHistory" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="VotingResults" EntityType="Self.VotingResult" />
+          <EntitySet Name="VotingRounds" EntityType="Self.VotingRound" />
+          <AssociationSet Name="FK_UserInfo_Lst_Gender" Association="Self.FK_UserInfo_Lst_Gender">
+            <End Role="Lst_Gender" EntitySet="Lst_Gender" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_Lst_State" Association="Self.FK_UserInfo_Lst_State">
+            <End Role="Lst_State" EntitySet="Lst_State" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRole_Roles" Association="Self.FK_UserToRole_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Team_VotingRound" Association="Self.fk_Team_VotingRound">
+            <End Role="VotingRound" EntitySet="VotingRounds" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VotiingResult_TeamBy" Association="Self.fk_VotiingResult_TeamBy">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="VotingResult" EntitySet="VotingResults" />
+          </AssociationSet>
+          <AssociationSet Name="fk_VotiingResult_TeamTo" Association="Self.fk_VotiingResult_TeamTo">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="VotingResult" EntitySet="VotingResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLoginHistory_To_Users_fk_UserID" Association="Self.FK_UserLoginHistory_To_Users_fk_UserID">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="UserLoginHistory" EntitySet="UserLoginHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserToRole_UserInfo" Association="Self.FK_UserToRole_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <EntitySet Name="TeamSongs" EntityType="GameDineHubModel.TeamSong" />
+          <AssociationSet Name="fk_TeamSong_Team" Association="GameDineHubModel.fk_TeamSong_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamSong" EntitySet="TeamSongs" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_VotingResult_VotingSong" Association="GameDineHubModel.Fk_VotingResult_VotingSong">
+            <End Role="TeamSong" EntitySet="TeamSongs" />
+            <End Role="VotingResult" EntitySet="VotingResults" />
+          </AssociationSet>
+          <EntitySet Name="SiteProprities" EntityType="GameDineHubModel.SiteProprity" />
+          <AssociationSet Name="Fk_SiteProprity_UserInfo" Association="GameDineHubModel.Fk_SiteProprity_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+            <End Role="SiteProprity" EntitySet="SiteProprities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TeamSong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_TeamID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SongURL" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VotingDone" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpotifySongUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Team" Relationship="GameDineHubModel.fk_TeamSong_Team" FromRole="TeamSong" ToRole="Team" />
+          <NavigationProperty Name="VotingResults" Relationship="GameDineHubModel.Fk_VotingResult_VotingSong" FromRole="TeamSong" ToRole="VotingResult" />
+        </EntityType>
+        <Association Name="fk_TeamSong_Team">
+          <End Type="GameDineHubModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="GameDineHubModel.TeamSong" Role="TeamSong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeamSong">
+              <PropertyRef Name="fk_TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_VotingResult_VotingSong">
+          <End Type="GameDineHubModel.TeamSong" Role="TeamSong" Multiplicity="1" />
+          <End Type="GameDineHubModel.VotingResult" Role="VotingResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeamSong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VotingResult">
+              <PropertyRef Name="fk_TeamSongID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SiteProprity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="GameDineHubModel.Fk_SiteProprity_UserInfo" FromRole="SiteProprity" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="Fk_SiteProprity_UserInfo">
+          <End Type="GameDineHubModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="GameDineHubModel.SiteProprity" Role="SiteProprity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SiteProprity">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameDineHubModelStoreContainer" CdmEntityContainer="GameDineHubEntities">
+    <EntitySetMapping Name="AppSettings">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.AppSetting)">
+        <MappingFragment StoreEntitySet="AppSettings">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lst_Gender">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Lst_Gender)">
+        <MappingFragment StoreEntitySet="Lst_Gender">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lst_State">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Lst_State)">
+        <MappingFragment StoreEntitySet="Lst_State">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Team)">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="fk_VotingRoundID" ColumnName="fk_VotingRoundID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoes">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserInfo)">
+        <MappingFragment StoreEntitySet="UserInfoes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_GenderID" ColumnName="fk_GenderID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="PasswordRequestHash" ColumnName="PasswordRequestHash" />
+          <ScalarProperty Name="PasswordRequestDate" ColumnName="PasswordRequestDate" />
+          <ScalarProperty Name="LoginAttempts" ColumnName="LoginAttempts" />
+          <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IsNewsLetter" ColumnName="IsNewsLetter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserLoginHistory)">
+        <MappingFragment StoreEntitySet="UserLoginHistories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+          <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+          <ScalarProperty Name="LogoutDateTime" ColumnName="LogoutDateTime" />
+          <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+          <ScalarProperty Name="BrowserName" ColumnName="BrowserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserRole)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_UserID" ColumnName="fk_UserID" />
+          <ScalarProperty Name="fk_RoleID" ColumnName="fk_RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VotingResults">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.VotingResult)">
+        <MappingFragment StoreEntitySet="VotingResults">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_VotingByTeamID" ColumnName="fk_VotingByTeamID" />
+          <ScalarProperty Name="fk_VotingToTeamID" ColumnName="fk_VotingToTeamID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="fk_TeamSongID" ColumnName="fk_TeamSongID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VotingRounds">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.VotingRound)">
+        <MappingFragment StoreEntitySet="VotingRounds">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="VoatingStart" ColumnName="VoatingStart" />
+          <ScalarProperty Name="VoatingDone" ColumnName="VoatingDone" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamSongs">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.TeamSong)">
+        <MappingFragment StoreEntitySet="TeamSongs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_TeamID" ColumnName="fk_TeamID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SongURL" ColumnName="SongURL" />
+          <ScalarProperty Name="VotingDone" ColumnName="VotingDone" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SpotifySongUrl" ColumnName="SpotifySongUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteProprities">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.SiteProprity)">
+        <MappingFragment StoreEntitySet="SiteProprities">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

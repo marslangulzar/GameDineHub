@@ -9,7 +9,7 @@ namespace DataModel.GenericRepository
     public class GenericRepository<TEntity> where TEntity : class
     {
         #region Private member variables...
-        internal FireStreetPizzaEntities Context;
+        internal GameDineHubEntities Context;
         internal DbSet<TEntity> DbSet;
         #endregion
 
@@ -18,7 +18,7 @@ namespace DataModel.GenericRepository
         /// Public Constructor,initializes privately declared local variables.
         /// </summary>
         /// <param name="context"></param>
-        public GenericRepository(FireStreetPizzaEntities context)
+        public GenericRepository(GameDineHubEntities context)
         {
             this.Context = context;
             this.DbSet = context.Set<TEntity>();

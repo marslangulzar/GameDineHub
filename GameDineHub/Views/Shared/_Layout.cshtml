@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @{
+        int applicationversion = 10015;
+    }
+    <meta charset="utf-8">
+    <title>
+        Game Dine Hub
+    </title>
+    <meta name="description" content="Game Dine Hub">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+    <!-- Call App Mode on ios devices -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- base css -->
+    @Styles.Render("~/Assets/css/vendors.bundle.css")
+    @Styles.Render("~/Assets/css/app.bundle.css")
+    @RenderSection("Styles", false)
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Assets/img/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Assets/img/logoFSP_small.png">
+    <link rel="mask-icon" href="~/Assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-solid.css">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-brands.css">
+    <link id="mytheme" rel="stylesheet" href="~/Assets/css/fa-regular.css">
+    <link id="mytheme" rel="stylesheet" href="/Assets/css/themes/cust-theme-3.css">
+    <link href="~/Assets/css/notifications/sweetalert2/sweetalert2.bundle.css" rel="stylesheet" />
+    <link href="~/Assets/css/formplugins/bootstrap-duallistbox/bootstrap-duallistbox.css" rel="stylesheet" />
+    <link href="~/Assets/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" media="screen, print" />
+    <link href="~/Assets/css/formplugins/select2/select2.bundle.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen, print" href="~/Assets/css/notifications/toastr/toastr.css">
+    <link href="~/Assets/css/custom.css?v=@applicationversion" rel="stylesheet" />
+    <script src="~/Assets/js/vendors.bundle.js"></script>
+    <script>
+       
+    </script>
+</head>
+<body class="mod-bg-1 mod-nav-link header-function-fixed nav-function-top blur">
+    <!-- DOC: script to save and load page settings -->
+    <script>
+        /**
+        /**
+         *	This script should be placed right after the body tag for fast execution
+         *	Note: the script is written in pure javascript and does not depend on thirdparty library
+         **/
+        'use strict';
+
+        var classHolder = document.getElementsByTagName("BODY")[0],
+            /**
+             * Load from localstorage
+             **/
+            themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+            themeURL = themeSettings.themeURL || '',
+            themeOptions = themeSettings.themeOptions || '';
+        /**
+         * Load theme options
+         **/
+        if (themeSettings.themeOptions) {
+            classHolder.className = themeSettings.themeOptions;
+            console.log("%c✔ Theme settings loaded", "color: #148f32");
+        }
+        else {
+            console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+        }
+        if (themeSettings.themeURL && !document.getElementById('mytheme')) {
+            var cssfile = document.createElement('link');
+            cssfile.id = 'mytheme';
+            cssfile.rel = 'stylesheet';
+            cssfile.href = themeURL;
+            document.getElementsByTagName('head')[0].appendChild(cssfile);
+        }
+        /**
+         * Save to localstorage
+         **/
+        var saveSettings = function () {
+            themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function (item) {
+                return /^(nav|header|mod|display)-/i.test(item);
+            }).join(' ');
+            if (document.getElementById('mytheme')) {
+                themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+            };
+            localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+        }
+        /**
+         * Reset settings
+         **/
+        var resetSettings = function () {
+            localStorage.setItem("themeSettings", "");
+        }
+
+    </script>
+
+    <!-- BEGIN Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <!-- BEGIN Left Aside -->
+            @*@{Html.RenderPartial("_LeftAside");}*@
+            <!--END Left Aside -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN Page Header -->
+                @*@{Html.RenderPartial("_PageHeader");}*@
+                <!-- END Page Header -->
+                <!-- BEGIN Page Content -->
+                <!-- the #js-page-content id is needed for some plugins to initialize -->
+                <main role="main" class="page-content">
+                    @* @{Html.RenderPartial("_BreadCrumb");}*@
+                    <div id="js-page-content">
+                        @RenderBody()
+                    </div>
+                </main>
+                <!-- this overlay is activated only when mobile menu is triggered -->
+                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                <!-- BEGIN Page Footer -->
+                @{Html.RenderPartial("_PageNoNavFooter");}
+                <!-- END Page Footer -->
+                <!-- BEGIN Shortcuts -->
+                <!-- modal shortcut -->
+                @{Html.RenderPartial("_ModalShortcut");}
+                <!-- END Shortcuts -->
+            </div>
+        </div>
+    </div>
+    <!-- END Page Wrapper -->
+    <!-- BEGIN Quick Menu -->
+    @{Html.RenderPartial("_QuickMenu");}
+    <!-- END Quick Menu -->
+    <!-- BEGIN Messenger -->
+    @*@{Html.RenderPartial("_Messenger");}*@
+    <!-- END Messenger -->
+    <!-- BEGIN Page Settings -->
+    @*@{Html.RenderPartial("_PageSettings");}*@
+    <!-- END Page Settings -->
+    <!-- base vendor bundle:
+    DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
+               + pace.js(recommended)
+               + jquery.js(core)
+               + jquery-ui-cust.js(core)
+               + popper.js(core)
+               + bootstrap.js(core)
+               + slimscroll.js(extension)
+               + app.navigation.js(core)
+               + ba-throttle-debounce.js(core)
+               + waves.js(extension)
+               + smartpanels.js(extension)
+               + src/../jquery-snippets.js(core) -->
+    <script src="~/Assets/js/app.bundle.js"></script>
+    <script src="~/Assets/js/formplugins/bootstrap-duallistbox/jquery.bootstrap-duallistbox.js"></script>
+    <script src="~/Assets/js/common.js?v=@applicationversion"></script>
+    <script src="~/Assets/js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
+    <script src="~/Assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/Assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="~/Assets/js/notifications/toastr/toastr.js"></script>
+    <script src="~/Assets/js/formplugins/select2/select2.bundle.js"></script>
+    <!--begin::Signal R -->
+    <script src="~/Content/jquery.signalR-2.4.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <!--end:: Signal R -->
+    @RenderSection("Scripts", false)
+    <!-- Start Overlay -->
+    <div class="row d-none" id="overlay">
+        <div class="overlaytextholder">
+            <div class="d-block " id="overlaybgimg" role="status" aria-hidden="true">
+                <img src="/Assets/img/demo/avatars/logo.png" class="profile-image spinner-grow bg-warning-50 profile-image rounded-circle">
+            </div>
+            <div class="overlaytext">
+                <strong class="text-white">Loading Please Wait...</strong>
+            </div>
+        </div>
+    </div>
+    <!-- END Overlay -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /* This is Client Requirement Should be removed*/
+            $("#js-nav-menu-wrapper-left-btn").removeClass('d-flex').addClass("d-none");
+            $("#js-nav-menu-wrapper-right-btn").removeClass('d-flex').addClass("d-none");
+        });
+    </script>
+</body>
+</html>

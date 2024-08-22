@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FireStreetPizzaModelStoreContainer" CdmEntityContainer="FireStreetPizzaEntities">
+  <EntityContainerMapping StorageEntityContainer="GameDineHubModelStoreContainer" CdmEntityContainer="GameDineHubEntities">
     <EntitySetMapping Name="AppSettings">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.AppSetting)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.AppSetting)">
         <MappingFragment StoreEntitySet="AppSettings">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Lst_Gender">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Lst_Gender)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Lst_Gender)">
         <MappingFragment StoreEntitySet="Lst_Gender">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Lst_State">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Lst_State)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Lst_State)">
         <MappingFragment StoreEntitySet="Lst_State">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Role)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Role)">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -40,7 +40,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Teams">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Team)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.Team)">
         <MappingFragment StoreEntitySet="Teams">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -52,7 +52,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserInfoes">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserInfo)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserInfo)">
         <MappingFragment StoreEntitySet="UserInfoes">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="fk_GenderID" ColumnName="fk_GenderID" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserLoginHistories">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserLoginHistory)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserLoginHistory)">
         <MappingFragment StoreEntitySet="UserLoginHistories">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
@@ -93,7 +93,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRoles">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserRole)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.UserRole)">
         <MappingFragment StoreEntitySet="UserRoles">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="fk_UserID" ColumnName="fk_UserID" />
@@ -102,7 +102,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VotingResults">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.VotingResult)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.VotingResult)">
         <MappingFragment StoreEntitySet="VotingResults">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="fk_VotingByTeamID" ColumnName="fk_VotingByTeamID" />
@@ -113,7 +113,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VotingRounds">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.VotingRound)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.VotingRound)">
         <MappingFragment StoreEntitySet="VotingRounds">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -124,7 +124,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TeamSongs">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.TeamSong)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.TeamSong)">
         <MappingFragment StoreEntitySet="TeamSongs">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="fk_TeamID" ColumnName="fk_TeamID" />
@@ -137,7 +137,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SiteProprities">
-      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.SiteProprity)">
+      <EntityTypeMapping TypeName="IsTypeOf(GameDineHubModel.SiteProprity)">
         <MappingFragment StoreEntitySet="SiteProprities">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />

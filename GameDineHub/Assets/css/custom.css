@@ -1,0 +1,350 @@
+﻿/*Added By Ramiz Khan*/
+/*Dated: 21/02/2020*/
+/*For Custom CSS */
+/*Application = Master App*/
+
+
+@font-face {
+    font-family: ptsans;
+    src: url(../webfonts/ptsans.ttf);
+}
+
+@font-face {
+    font-family: ptsans-bold;
+    src: url(../webfonts/ptsans-bold.ttf);
+}
+
+body {
+    font-family: "ptsans", "Helvetica Neue", Helvetica, Arial;
+    font-size: 0.9rem;
+}
+
+
+@media (min-width: 992px) {
+    .nav-function-top .page-header {
+        background-image: none !important;
+        background-color: #ffffff !important;
+    }
+}
+ /*azhr*/
+/*.page-wrapper {
+    overflow: hidden
+}
+
+@media (max-width: 400px){
+    .page-content-wrapper {
+        overflow-y: auto !important;
+        overflow: hidden;
+    }
+}*/ 
+.page-logo, .page-sidebar, .nav-footer, .bg-brand-gradient {
+    background-image: none !important;
+}
+
+.popover {
+    max-width: 600px !important;
+}
+
+/* Start Modal-FullScreen */
+.modal-fullscreen .modal-dialog .modal-content {
+    height: 100%;
+}
+
+.modal-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    overflow: hidden !important;
+}
+
+.modal-dialog-fullscreen {
+    position: fixed !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    max-width: unset !important;
+    max-height: unset !important;
+}
+
+.modal-content-fullscreen {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    border: 2px solid #3c7dcf !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 100% !important;
+}
+
+.modal-header-fullscreen {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    z-index: 99;
+}
+
+.modal-title-fullscreen {
+    font-weight: 300 !important;
+    font-size: 2em !important;
+    color: #fff !important;
+    line-height: 30px !important;
+}
+
+.modal-body-fullscreen {
+    position: absolute !important;
+    top: 50px !important;
+    bottom: 60px !important;
+    width: 100% !important;
+    font-weight: 300 !important;
+    overflow: auto !important;
+}
+
+.modal-footer-fullscreen {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 60px !important;
+    padding: 10px !important;
+    background: #f1f3f5 !important;
+}
+/* End Modal-FullScreen */
+
+/* Full Screen OverLay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
+.overlaytextholder {
+    top: 50% !important;
+    width: 100% !important;
+    position: relative !important;
+    text-align: center !important;
+}
+
+#overlaybgimg {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlaytext {
+    margin-top: 30px;
+}
+/* Full Screen OverLay ENDs */
+
+.cursor-copy {
+    cursor: copy !important;
+}
+
+.z-index-10000 {
+    z-index: 10000 !important;
+}
+
+.swal2-confirm {
+    color: #fff !important;
+    background-color: #1dc9b7 !important;
+    border-color: #1dc9b7 !important;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075) !important;
+}
+
+/*.modal-footer {
+    background: #f1f3f5 !important;
+    padding: 1rem !important;
+}*/
+
+.table th, td {
+    vertical-align: middle !important;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+    background: #ffffff;
+    border-left: 1px solid darken(rgba(0, 0, 0, 0.075), 60%);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: darken(#70a7de, 90%);
+    border-radius: 10px;
+    background: #6c757d;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: calc(1.5em + 1rem + -4px) !important;
+}
+
+.select2-container .select2-selection--single {
+    height: calc(1.5em + 0.75rem + 0px) !important;
+}
+
+.form-group {
+    margin-bottom: 1.0em !important;
+}
+
+.swal2-container {
+    z-index: 9999 !important;
+}
+
+.form-control-xl {
+    height: calc(2em + 2rem + 4px) !important;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.5rem !important;
+    line-height: 2.5 !important;
+    border-radius: 4px;
+}
+
+.bg-success-50 {
+    background-color: #96e6a9 !important;
+    color: rgba(0, 0, 0, 0.8);
+}
+.custom-switch.custom-switch-xl .custom-control-label {
+    padding-left: 4rem;
+}
+
+    .custom-switch.custom-switch-xl .custom-control-label::before {
+        height: 2.5rem;
+        width: calc(4rem + 0.75rem);
+        border-radius: 5rem;
+    }
+
+    .custom-switch.custom-switch-xl .custom-control-label::after {
+        width: calc(2.5rem - 5px);
+        height: calc(2.5rem - 8px);
+        border-radius: calc(4rem - (2.5rem / 2));
+    }
+
+.custom-switch.custom-switch-xl .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(calc(2.5rem - 0.25rem));
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #4679cc;
+    background-color: #4679cc;
+}
+.custom-switch .custom-control-label::after {
+    background-color: #40d02b;
+}
+.heightcutomset {
+    max-height: 17vmax;
+    overflow-y: scroll;
+    
+}
+.btn-primary {
+    color: #fff !important;
+    background-color: #333943 !important;
+    border-color: #333943 !important;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.panel-tag {
+    border-left: 3px solid #ffc241 !important;
+    background: #FFE6DE !important;
+}
+.height-15 {
+    height: 5.25rem;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #FBB65C !important;
+    color: #fff !important;
+}
+
+.border-custom {
+    border: 4px solid #ffffff !important;
+}
+
+.displaymessage {
+    font-size:100px!important;
+    color:red;
+    font-weight:bolder; 
+    text-align:center
+}
+
+#addTeamSection, #songListSection {
+    margin-top: 200px
+}
+
+.alertText {
+    font-size: 1.75rem !important;
+}
+
+@media (max-width: 992px) {
+    .displaymessage {
+        font-size: 85px;
+    }
+    #addTeamSection, #songListSection {
+        margin-top: 70px
+    }
+    .alertText {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 570px) {
+    .displaymessage {
+        font-size: 40px;
+    }
+    #addTeamSection, #songListSection {
+        margin-top: 50px
+    }
+    .alertText {
+        font-size: 1rem !important;
+    }
+}
+
+#winingBg {
+    position: relative !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width:96%;
+    margin:auto;
+   /* overflow-y:scroll;
+    overflow-x:hidden;*/
+        
+}
+.container {
+    height:100% !important;
+}
+/* Add By azhar*/
+.anim-box {
+    height: 90vh;
+    overflow: hidden;
+    position: relative;
+}
+.anim-h {
+    height: 115%;
+    width:100%;
+    margin-left:-50%;
+    overflow: hidden;
+    display: inline-block;
+    animation: floatText 20s infinite linear;
+    transform: translateY(100%);
+    position: absolute;
+    padding-bottom:10px;
+    
+}
+.anim-box p:nth-child(1) {
+    animation-delay: 10s;
+
+    /*transform: translateY(100%);*/
+}
+
+@keyframes floatText {
+    to {
+        transform: translateY(-100%);
+    }
+}

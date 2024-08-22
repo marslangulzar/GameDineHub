@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BusinessEntities.Entities.Product.InventoryDetailVm>
+
+<div class="modal fade" id="InventoryDetailModal" tabindex="-1" data-backdrop="static" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success-600 p-2">
+                <h4 class="modal-title text-white">
+                    <span aria-hidden="true"><i class="fal fa-inventory mr-2"></i></span>Inventory Detail &nbsp;  -  &nbsp; @ViewBag.BrandName
+                    <small class="m-0 text-muted">
+
+                    </small>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="loader_provider" class="d-none">
+                    <div class="fs-xl color-danger-300 mb-1"><i class="fal fa-cog fa-spin mr-1"></i>Loading please wait...</div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-primary-500 progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <!-- datatable Start -->
+                <table id="RecordsGrid1" class="table table-bordered table-hover table-striped table-sm w-100">
+                    <thead class="bg-primary-900">
+                        <tr>
+                            <th><i class="fal fa-box mr-1"></i> Lot Number</th>
+                            <th><i class="fal fa-list mr-1"></i> Serial Number</th>
+                            <th><i class="fal fa-calendar-times mr-1"></i> Expiration Date</th>
+                            <th><i class="fal fa-boxes mr-1"></i> Available Quantity</th>
+                            <th><i class="fal fa-truck mr-1"></i> Shipped Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.LotNumber</td>
+                                    <td>@item.SerialNumber</td>
+                                    <td>@item.ExpirationDate.Value.ToShortDateString()</td>
+                                    <td align="center"><span class="badge badge-info rounded-pill">@item.AvailableQuantity</span></td>
+                                    <td align="center"><span class="badge badge-success rounded-pill">@item.ShippedQuantity</span></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <!-- datatable End -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var tables;
+    $(document).ready(function () {
+            tables = $('#RecordsGrid1').DataTable({
+            responsive: true,
+            "lengthMenu": [[10,25, 50, 100, -1], [10,25, 50, 100, "All"]],
+            language: {
+                searchPlaceholder: "Filter"
+            }
+        });
+    })
+</script>
