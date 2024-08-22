@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BusinessEntities.Entities.Game.TeamSongVM>
+<div class="container-fluid">
+    <div class="row d-none" id="votingResult">
+        <div class="col-lg-4 col-xs-12 col-sm-12 mx-auto">
+            <label for="example-input-material" class="form-label text-white font-weight-bold">You Selected:</label>
+            <div class="card m-auto border">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p class="text-danger">The Time They Are Changin'.</p>
+                        <footer class="blockquote-footer">By <cite title="Source Title">Bob Dalian</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="test" class="col-lg-4 col-xs-12 col-sm-12 mx-auto" style="max-height:80vh; overflow-y:auto">
+            <h3 class="text-white font-weight-bold text-center my-3"> Cast your vote by selecting a song below:</h3>
+            @{
+                if (Model != null && Model.Count() > 0)
+                { <div id="votesection" style="@(Model.Where(a=>a.VoteMark==true).FirstOrDefault() != null?"pointer-events:none":"")" >
+                        @foreach (var item in Model)
+                        {
+                        <div class="@(item.VoteMark ==true?"disabled":"markVote")" data-ID="@item.ID" data-TeamID="@item.fk_TeamID" id="voteItem_@item.ID" style="cursor:pointer">
+                            <div class="card-body rounded-plus mb-3 py-1 shadow text-center VoteButtonStyle">
+                                <p class="text-white text-center h4 mb-0 fw-700">@item.Name</p>
+                                <!--<footer class="blockquote-footer text-white text-center">-->@*Team: <cite title="Source Title">@item.TeamName</cite>*@<!--</footer>-->
+                            </div>
+                        </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

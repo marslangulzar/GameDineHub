@@ -1,0 +1,278 @@
+﻿@model IEnumerable<BusinessEntities.Entities.Game.TeamSongVM>
+@{
+    Layout = "~/Views/Shared/_LayoutVotingDisplay.cshtml";
+}
+<style>
+    #example-input-material::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        opacity: 0.7;
+    }
+
+    #example-input-material {
+        font-size: 1.75rem !important;
+    }
+
+    @@media (max-width: 570px) {
+        #example-input-material {
+            font-size: 1rem !important;
+        }
+    }
+    .displaymessage1{
+        /*font-size*/
+    }
+   
+</style>
+
+<input type="hidden" id="votingRoundStatus" value="true" />
+
+<div class="container-fluid">
+    @{
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="alert border-light bg-transparent fade show  text-white text-center text-lg-center fw-900 alertText mt-auto p-3 mt-3" role="alert">
+                    <span id="publishThemeCastText">@(TempData["ThemeCast"] == null? "Game Dine Hub": @TempData["ThemeCast"]) </span>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<div class="container-fluid">
+
+            <div id="addTeamSection" class="@(ViewBag.TeamState ==true || ViewBag.TeamLoggedIn==true?"d-none":"")">
+                <div class="row">
+                    <div class="col-sm-10 col-md-6 col-lg-5 col-xl-4 mx-auto">
+                        <div class="form-group">
+                            <input type="hidden" id="hdnTeamID" />
+                            <input type="text" id="example-input-material" class="form-control form-control-lg rounded-0 border-top-0 border-left-0 border-right-0 p-0 bg-transparent text-white" placeholder="Enter your team name">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="addTeam" class="btn btn-outline-light waves-effect waves-themed float-right">Enter Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+@*this section for song selection*@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @*<div id="selectedteamName">@(ViewBag.teamName)</div>*@
+        <div class="@(ViewBag.TeamState ==true || ViewBag.TeamLoggedIn==false?"d-none":"")" id="songListSection">
+            @{ Html.RenderPartial("_SongSelection"); }
+        </div>
+    </div>
+</div>
+
+
+<div class="@(ViewBag.TeamState ==true?"":"d-none")" id="votingSectionMainDiv">
+    <div id="ownTeamSong"></div>
+    <div class="@(ViewBag.VotingRoundStatus==true? "":"d-none")" id="votingListSection">
+        @{ Html.RenderPartial("_VotingList", Model); }
+    </div>
+    <div class="@(ViewBag.VotingRoundStatus==true?"d-none":"")" id="votingNotStartSection">
+        <div class="row" id="wrapper">
+            <div class="col-lg-4 col-xs-12 col-sm-12 mx-auto">
+                <div style="cursor:pointer">
+                    <div class="card-body rounded-plus shadow text-center VoteButtonStyle">
+                        <p class="text-white text-center mb-0  fw-700" id="ownSong"> @ViewBag.OwnTeamSong </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:100px">
+            <div class="col-sm-8 col-lg-6 col-xl-4 mx-auto">
+                <div class="alert alert alert-warning fade show" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="spinner-border text-warning mr-3">
+                        </div>
+                        <div class="flex-1">
+                            <span class="h5 m-0 fw-700"> Voting Round Starting Soon. </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    })
+    $('#voteItem').click(function () {
+        var url = "/Teams/CastVote";
+        var _teamId = $('#hdnTeamID').val();
+        ilms.ajaxPostCall(url, { teamId: _teamId }, function (data) {
+            if (data.status) {
+                ilms.showAlertWithType("Team successfully added.", 'success');
+                $("#").attr("disabled", false)
+
+            } else {
+                ilms.showAlertWithType(data.message, 'error');
+            }
+        }, null, false)
+    })
+    $('#addTeamSong').click(function () {
+        debugger;
+        var url = "/Team/SaveTeamSong";
+        var temp = localStorage.getItem("teamId");
+        if (temp == "" || temp == null) {
+            return;
+        }
+        var teamID = temp;
+        var songUrl = $('#searchStr').val();
+        var songName = $('#searchStr option:selected').text();
+        var song = $('#searchStr').select2('data')[0];
+        var _externalSongUrl = song.attr1.Value;
+        ilms.ajaxPostCall(url, { teamID: teamID, songUrl: songUrl, songName: songName, externalSongUrl: _externalSongUrl }, function (data) {
+            if (data.songID > 0)
+            {
+                ilms.showAlertWithType("Song successfully added.", 'success');
+                var votingRoundStatus = $('#votingRoundStatus').val();
+                if (votingRoundStatus == "false")
+                {
+                    $("#ownSong").empty();
+                    $("#ownSong").text(songName);
+                    $("#votingSectionMainDiv").removeClass("d-none");
+                    $("#votingListSection").addClass("d-none");
+                    $("#votingNotStartSection").removeClass("d-none");
+                    $("#songListSection").addClass("d-none");
+                    $('#hdnTeamID').empty();
+                    $('#hdnTeamID').val(data);
+                } else
+                {
+                    $("#ownSong").empty();
+                    $("#ownSong").text(songName);
+                    $("#votingSectionMainDiv").removeClass("d-none");
+                    $("#songListSection").addClass("d-none");
+                    $('#hdnTeamID').empty();
+                    $('#hdnTeamID').val(data);
+                    
+                }
+
+            } else {
+                ilms.showAlertWithType(data.message, 'error');
+            }
+        }, null, false)
+    })
+
+    $('#addTeam').click(function () {
+
+        if ($('#example-input-material').val().length === 0) {
+            ilms.showAlertWithType("Enter any team name", 'error');
+            return;
+        }
+        var url = "/Team/RegisterTeam";
+        var _name = $('#example-input-material').val();
+
+        ilms.ajaxPostCall(url, { teamName: _name }, function (data) {
+            if (data > 0) {
+                $("#songListSection").removeClass("d-none")
+                $("#addTeamSection").addClass("d-none")
+                $('#hdnTeamID').val(data);
+                localStorage.setItem("teamId", data);
+            } else {
+                ilms.showAlertWithType(data.message, 'error');
+            }
+        }, null, false)
+    })
+
+    $(document).off('click', ".markVote").on('click', ".markVote", function (e) {
+        var _songId = $(this).data("id");
+        var _toTeamId = $(this).data("teamid");
+        ilms.showDecisionAlert("Are you sure?", "You want to vote this song.", "question", "Yes",
+            function () {
+                $("#voteItem_" + _songId).addClass("disabled");
+                $("#votesection").css("pointer-events", "none");
+                $("#voteItem_" + _songId).removeClass("markVote");
+                var url = "/Team/CastVote";
+                var _fromTeamId = $('#hdnTeamID').val();
+                ilms.ajaxPostCall(url, { songId: _songId, fromTeamId: _fromTeamId, toTeamId: _toTeamId }, function (data) {
+                    if (data.status) {
+                        ilms.showAlertWithType(data.message, 'success');
+                    } else {
+                        ilms.showAlertWithType(data.message, 'error');
+                    }
+                }, null, false)
+
+            }, function () { });
+    });
+
+    $(document).ready(function () {
+        var pageUrl = ilms.routers.SearchSongs;
+        $('#searchStr').select2({
+            placeholder: "Search songs",
+            ajax: {
+                url: pageUrl,
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        searchParam: params.term // search term
+                    };
+                },
+                processResults: function (data, params) {
+                    return {
+                        results: data,
+                        more: false
+                    };
+                },
+                cache: true
+            },
+            templateResult: function (item) {
+                // No need to template the searching text
+                if (item.loading) {
+                    return item.text;
+                }
+
+                var term = query.term || '';
+                var $result = ilms.markMatch(item.text, term);
+
+                return $result;
+            },
+            templateSelection: function (data) {
+                return data.text;
+            },
+            minimumInputLength: 3
+            ,
+            language: {
+                searching: function (params) {
+                    // Intercept the query as it is happening
+                    query = params;
+                    //debugger;
+                    // Change this to be appropriate for your application
+                    return 'Searching...' + query.term + '...';
+                }
+            }
+        });
+    })
+
+    function refreshTeamVotingGrid() {
+        $('#votingListSection').removeClass('d-none');
+        $('#votingNotStartSection').addClass('d-none');
+        try {
+            var requestParams =
+            {
+                fromTeamId: $('#hdnTeamID').val()
+            };
+            var pageUrl = ilms.routers.GetVotingSong;
+            ilms.partialPageLoadingToElement(pageUrl, requestParams, 'votingListSection');
+        } catch (e) {
+        }
+    }
+    //function getTeamName() {
+    //    try {
+    //        var requestParams =
+    //        {
+    //            fromTeamId: $('#hdnTeamID').val()
+    //        };
+    //        var pageUrl = ilms.routers.GetTeamName;
+    //        ilms.partialPageLoadingToElement(pageUrl, requestParams, 'votingListSection');
+    //    } catch (e) {
+    //    }
+    //}
+    function accessToken() {
+        window.location.href = "https://accounts.spotify.com/authorize?client_id=ID5ddArslan271997f0ad2456c48bdb2719979be4ad46c40bbab&response_type=code&redirect_uri=http%3a%2f%2flocalhost%3a65268%2fTeam%2fGetCallback%2f&scope=playlist-read-private+playlist-read-collaborative+user-modify-playback-state+user-read-currently-playing+streaming+user-read-email+user-read-private&show_dialog=False";
+    }
+
+</script>

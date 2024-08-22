@@ -1,0 +1,129 @@
+﻿@model BusinessEntities.Entities.UserVM
+@{
+
+}
+
+<!-- Modal Assign Roles -->
+<div class="modal fade" id="RolesModal" tabindex="-1" role="dialog" aria-labelledby="RolesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="ModalLabel">Assign Role(s)</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="assignRoleDiv">
+                    <!-- Ajax content Here ;) -->
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancel
+                    </button>
+
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal Reset Password -->
+
+
+<div class="modal modal-fullscreen animated bounceIn" id="UserUpsertModal" data-backdrop="static" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-fullscreen">
+        <div class="modal-content modal-content-fullscreen">
+            <div class="modal-header modal-header-fullscreen bg-primary-400 p-2">
+                <h4 class="modal-title text-white">
+                    <span aria-hidden="true">
+                        <i class="fal fa-history mr-2"></i>
+                    </span><span class="patientName"></span> Create / Update User
+                    <small class="m-0 text-muted"> </small>
+                </h4>
+                <button type="button" class="" data-dismiss="modal" data-target="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body modal-body-fullscreen">
+                <form role="form" id="Form">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                <div>
+                                    <label for="FirstName">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="FirstName" placeholder="Enter First Name" name="FirstName" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                <div>
+                                    <label for="MiddleName">Middle Name</label>
+                                    <input type="text" class="form-control" id="MiddleName" placeholder="Enter Middle Name" name="MiddleName">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                <div>
+                                    <label for="LastName">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="LastName" placeholder="Enter Last Name" name="LastName" required>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                <div>
+                                    <label for="Email">Email<span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="Email" placeholder="Enter Email" name="Email" required>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                                <div>
+                                    <label for="fk_LocationID">User Role <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="userroles" required>
+                                        @foreach (var role in ViewBag.UserRolesList)
+                                        {
+                                            <option value="@role.RoleID">@role.RoleName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                                <br />
+                                <div class="form-group" style="padding-top: 10px">
+                                    <label>
+                                        <input type="checkbox" class="checkbox" id="Active" name="Active" checked>
+                                        <span>Is Active?</span>
+                                    </label>
+
+                                    <input style="display:none" id="recordID" name="recordID" value="" />
+                                    <button type="submit" id="saveBtn" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save"></span> Add </button>
+                                    <a href="javascript:void(0);" id="resetBtn" class="btn btn-warning"><span class="fa fa-refresh"></span> Reset</a>
+                                    @*@if (User.IsInRole(ActionMethod.UserAdd.ToString()))
+                                        {
+                                            <!--<a href="javascript:void(0);" onclick="$('#addBtn').click();" class="btn btn-default"><span class="fa fa-refresh"></span>Hide User Form</a>-->
+                                         }*@
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+            <div class="modal-footer modal-footer-fullscreen">
+                <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-danger">
+                    <span class="fal fa-times mr-1"></span>Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        pageSetUp();
+        $('#UserUpsertModal').modal('show');
+    });
+
+</script>

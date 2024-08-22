@@ -1,0 +1,9 @@
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\bin\Debug\BusinessEntities.dll
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\bin\Debug\BusinessEntities.pdb
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\bin\Debug\Newtonsoft.Json.xml
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\obj\Debug\BusinessEntities.csproj.AssemblyReference.cache
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\obj\Debug\BusinessEntities.csproj.CoreCompileInputs.cache
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\obj\Debug\BusinessEntities.csproj.CopyComplete
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\obj\Debug\BusinessEntities.dll
+C:\Users\arslan\Downloads\Fire Street Pizza(Mixtape)\Fire Street Pizza(Mixtape)\Development\BusinessEntities\obj\Debug\BusinessEntities.pdb

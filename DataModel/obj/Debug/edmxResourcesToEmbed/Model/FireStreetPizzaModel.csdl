@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FireStreetPizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AppSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="3500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Label" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Lst_Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_Lst_Gender" FromRole="Lst_Gender" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="Lst_State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Abbreviation" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_Lst_State" FromRole="Lst_State" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserToRole_Roles" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fk_VotingRoundID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VotingRound" Relationship="Self.fk_Team_VotingRound" FromRole="Team" ToRole="VotingRound" />
+    <NavigationProperty Name="VotingResults" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="Team" ToRole="VotingResult" />
+    <NavigationProperty Name="VotingResults1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="Team" ToRole="VotingResult" />
+    <NavigationProperty Name="TeamSongs" Relationship="FireStreetPizzaModel.fk_TeamSong_Team" FromRole="Team" ToRole="TeamSong" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_GenderID" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordRequestHash" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordRequestDate" Type="DateTime" Precision="3" />
+    <Property Name="LoginAttempts" Type="Int32" Nullable="false" />
+    <Property Name="LastPasswordChange" Type="DateTime" Precision="3" />
+    <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneExt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="IsNewsLetter" Type="Boolean" />
+    <NavigationProperty Name="Lst_Gender" Relationship="Self.FK_UserInfo_Lst_Gender" FromRole="UserInfo" ToRole="Lst_Gender" />
+    <NavigationProperty Name="Lst_State" Relationship="Self.FK_UserInfo_Lst_State" FromRole="UserInfo" ToRole="Lst_State" />
+    <NavigationProperty Name="UserLoginHistories" Relationship="Self.FK_UserLoginHistory_To_Users_fk_UserID" FromRole="UserInfo" ToRole="UserLoginHistory" />
+    <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserToRole_UserInfo" FromRole="UserInfo" ToRole="UserRole" />
+    <NavigationProperty Name="SiteProprities" Relationship="FireStreetPizzaModel.Fk_SiteProprity_UserInfo" FromRole="UserInfo" ToRole="SiteProprity" />
+  </EntityType>
+  <EntityType Name="UserLoginHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_UserId" Type="Int32" Nullable="false" />
+    <Property Name="LoginDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LogoutDateTime" Type="DateTime" Precision="3" />
+    <Property Name="UserIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BrowserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserLoginHistory_To_Users_fk_UserID" FromRole="UserLoginHistory" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_UserID" Type="Int32" Nullable="false" />
+    <Property Name="fk_RoleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserToRole_Roles" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserToRole_UserInfo" FromRole="UserRole" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="VotingResult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_VotingByTeamID" Type="Int32" Nullable="false" />
+    <Property Name="fk_VotingToTeamID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Team" Relationship="Self.fk_VotiingResult_TeamBy" FromRole="VotingResult" ToRole="Team" />
+    <NavigationProperty Name="Team1" Relationship="Self.fk_VotiingResult_TeamTo" FromRole="VotingResult" ToRole="Team" />
+    <Property Name="fk_TeamSongID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TeamSong" Relationship="FireStreetPizzaModel.Fk_VotingResult_VotingSong" FromRole="VotingResult" ToRole="TeamSong" />
+  </EntityType>
+  <EntityType Name="VotingRound">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="VoatingStart" Type="Boolean" />
+    <Property Name="VoatingDone" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Teams" Relationship="Self.fk_Team_VotingRound" FromRole="VotingRound" ToRole="Team" />
+  </EntityType>
+  <Association Name="FK_UserInfo_Lst_Gender">
+    <End Role="Lst_Gender" Type="Self.Lst_Gender" Multiplicity="0..1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lst_Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="fk_GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfo_Lst_State">
+    <End Role="Lst_State" Type="Self.Lst_State" Multiplicity="0..1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lst_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToRole_Roles">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="fk_RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Team_VotingRound">
+    <End Role="VotingRound" Type="Self.VotingRound" Multiplicity="1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VotingRound">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="fk_VotingRoundID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_VotiingResult_TeamBy">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="VotingResult" Type="Self.VotingResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VotingResult">
+        <PropertyRef Name="fk_VotingByTeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_VotiingResult_TeamTo">
+    <End Role="Team" Type="Self.Team" Multiplicity="1" />
+    <End Role="VotingResult" Type="Self.VotingResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VotingResult">
+        <PropertyRef Name="fk_VotingToTeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLoginHistory_To_Users_fk_UserID">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+    <End Role="UserLoginHistory" Type="Self.UserLoginHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLoginHistory">
+        <PropertyRef Name="fk_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserToRole_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="fk_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FireStreetPizzaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AppSettings" EntityType="Self.AppSetting" />
+    <EntitySet Name="Lst_Gender" EntityType="Self.Lst_Gender" />
+    <EntitySet Name="Lst_State" EntityType="Self.Lst_State" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+    <EntitySet Name="UserLoginHistories" EntityType="Self.UserLoginHistory" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="VotingResults" EntityType="Self.VotingResult" />
+    <EntitySet Name="VotingRounds" EntityType="Self.VotingRound" />
+    <AssociationSet Name="FK_UserInfo_Lst_Gender" Association="Self.FK_UserInfo_Lst_Gender">
+      <End Role="Lst_Gender" EntitySet="Lst_Gender" />
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfo_Lst_State" Association="Self.FK_UserInfo_Lst_State">
+      <End Role="Lst_State" EntitySet="Lst_State" />
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToRole_Roles" Association="Self.FK_UserToRole_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Team_VotingRound" Association="Self.fk_Team_VotingRound">
+      <End Role="VotingRound" EntitySet="VotingRounds" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="fk_VotiingResult_TeamBy" Association="Self.fk_VotiingResult_TeamBy">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="VotingResult" EntitySet="VotingResults" />
+    </AssociationSet>
+    <AssociationSet Name="fk_VotiingResult_TeamTo" Association="Self.fk_VotiingResult_TeamTo">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="VotingResult" EntitySet="VotingResults" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLoginHistory_To_Users_fk_UserID" Association="Self.FK_UserLoginHistory_To_Users_fk_UserID">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="UserLoginHistory" EntitySet="UserLoginHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserToRole_UserInfo" Association="Self.FK_UserToRole_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="TeamSongs" EntityType="FireStreetPizzaModel.TeamSong" />
+    <AssociationSet Name="fk_TeamSong_Team" Association="FireStreetPizzaModel.fk_TeamSong_Team">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="TeamSong" EntitySet="TeamSongs" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_VotingResult_VotingSong" Association="FireStreetPizzaModel.Fk_VotingResult_VotingSong">
+      <End Role="TeamSong" EntitySet="TeamSongs" />
+      <End Role="VotingResult" EntitySet="VotingResults" />
+    </AssociationSet>
+    <EntitySet Name="SiteProprities" EntityType="FireStreetPizzaModel.SiteProprity" />
+    <AssociationSet Name="Fk_SiteProprity_UserInfo" Association="FireStreetPizzaModel.Fk_SiteProprity_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+      <End Role="SiteProprity" EntitySet="SiteProprities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TeamSong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_TeamID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SongURL" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="VotingDone" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SpotifySongUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Team" Relationship="FireStreetPizzaModel.fk_TeamSong_Team" FromRole="TeamSong" ToRole="Team" />
+    <NavigationProperty Name="VotingResults" Relationship="FireStreetPizzaModel.Fk_VotingResult_VotingSong" FromRole="TeamSong" ToRole="VotingResult" />
+  </EntityType>
+  <Association Name="fk_TeamSong_Team">
+    <End Type="FireStreetPizzaModel.Team" Role="Team" Multiplicity="1" />
+    <End Type="FireStreetPizzaModel.TeamSong" Role="TeamSong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TeamSong">
+        <PropertyRef Name="fk_TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_VotingResult_VotingSong">
+    <End Type="FireStreetPizzaModel.TeamSong" Role="TeamSong" Multiplicity="1" />
+    <End Type="FireStreetPizzaModel.VotingResult" Role="VotingResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeamSong">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VotingResult">
+        <PropertyRef Name="fk_TeamSongID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SiteProprity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserInfo" Relationship="FireStreetPizzaModel.Fk_SiteProprity_UserInfo" FromRole="SiteProprity" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="Fk_SiteProprity_UserInfo">
+    <End Type="FireStreetPizzaModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="FireStreetPizzaModel.SiteProprity" Role="SiteProprity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SiteProprity">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

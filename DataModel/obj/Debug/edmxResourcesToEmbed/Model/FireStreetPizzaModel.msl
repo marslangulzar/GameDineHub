@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FireStreetPizzaModelStoreContainer" CdmEntityContainer="FireStreetPizzaEntities">
+    <EntitySetMapping Name="AppSettings">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.AppSetting)">
+        <MappingFragment StoreEntitySet="AppSettings">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lst_Gender">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Lst_Gender)">
+        <MappingFragment StoreEntitySet="Lst_Gender">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lst_State">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Lst_State)">
+        <MappingFragment StoreEntitySet="Lst_State">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.Team)">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="fk_VotingRoundID" ColumnName="fk_VotingRoundID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoes">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserInfo)">
+        <MappingFragment StoreEntitySet="UserInfoes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_GenderID" ColumnName="fk_GenderID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="PasswordRequestHash" ColumnName="PasswordRequestHash" />
+          <ScalarProperty Name="PasswordRequestDate" ColumnName="PasswordRequestDate" />
+          <ScalarProperty Name="LoginAttempts" ColumnName="LoginAttempts" />
+          <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IsNewsLetter" ColumnName="IsNewsLetter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserLoginHistory)">
+        <MappingFragment StoreEntitySet="UserLoginHistories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+          <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+          <ScalarProperty Name="LogoutDateTime" ColumnName="LogoutDateTime" />
+          <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+          <ScalarProperty Name="BrowserName" ColumnName="BrowserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.UserRole)">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_UserID" ColumnName="fk_UserID" />
+          <ScalarProperty Name="fk_RoleID" ColumnName="fk_RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VotingResults">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.VotingResult)">
+        <MappingFragment StoreEntitySet="VotingResults">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_VotingByTeamID" ColumnName="fk_VotingByTeamID" />
+          <ScalarProperty Name="fk_VotingToTeamID" ColumnName="fk_VotingToTeamID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="fk_TeamSongID" ColumnName="fk_TeamSongID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VotingRounds">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.VotingRound)">
+        <MappingFragment StoreEntitySet="VotingRounds">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="VoatingStart" ColumnName="VoatingStart" />
+          <ScalarProperty Name="VoatingDone" ColumnName="VoatingDone" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamSongs">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.TeamSong)">
+        <MappingFragment StoreEntitySet="TeamSongs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fk_TeamID" ColumnName="fk_TeamID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SongURL" ColumnName="SongURL" />
+          <ScalarProperty Name="VotingDone" ColumnName="VotingDone" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SpotifySongUrl" ColumnName="SpotifySongUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteProprities">
+      <EntityTypeMapping TypeName="IsTypeOf(FireStreetPizzaModel.SiteProprity)">
+        <MappingFragment StoreEntitySet="SiteProprities">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
